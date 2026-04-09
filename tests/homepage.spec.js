@@ -1,7 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-const baseURL =
-  'https://webportal.dev.app.sentinel-health.com';
+const baseURL = 'https://webportal.dev.app.sentinel-health.com';
 
 // ---------------------
 // Cookies helper
@@ -10,9 +9,8 @@ async function acceptCookiesIfVisible(page) {
   const popup = page.locator(
     'div.bg-white.shadow-xl:has-text("We use cookies")'
   );
-  const acceptButton = popup.getByRole('button', {
-    name: 'Accept all',
-  });
+
+  const acceptButton = popup.getByRole('button', { name: 'Accept all' });
 
   if (await popup.isVisible().catch(() => false)) {
     await acceptButton.click();
@@ -49,21 +47,15 @@ test.describe('Homepage', () => {
     await acceptCookiesIfVisible(page);
 
     await expect(page).toHaveTitle(/Sentinel/);
-    await expect(
-      page.getByRole('heading', { level: 1 })
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });
 
   test('basic elements are visible', async ({ page }) => {
     await page.goto(baseURL);
     await acceptCookiesIfVisible(page);
 
-    await expect(
-      page.getByRole('heading', { level: 1 })
-    ).toBeVisible();
-
-    const links = page.locator('a');
-    await expect(links.first()).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.locator('a').first()).toBeVisible();
   });
 });
 
@@ -81,9 +73,7 @@ test.describe('Navigation', () => {
       await page.getByRole('link', { name }).first().click();
 
       await expect(page).toHaveURL(`${baseURL}/${path}`);
-      await expect(
-        page.getByRole('heading', { level: 1 })
-      ).toBeVisible();
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     });
   }
 });
@@ -95,33 +85,24 @@ test('Random navigation between pages', async ({ page }) => {
   await page.goto(baseURL);
   await acceptCookiesIfVisible(page);
 
-  const randomPages = shuffleArray(pages).filter(
-    p => p.path !== ''
-  );
+  const randomPages = shuffleArray(pages).filter(p => p.path !== '');
 
   for (const { path } of randomPages) {
     await page.locator(`a[href="/${path}"]`).first().click();
-
     await expect(page).toHaveURL(`${baseURL}/${path}`);
-    await expect(
-      page.getByRole('heading', { level: 1 })
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   }
 });
 
 // ---------------------
 // Section checks
 // ---------------------
-test('Caring for Carers section is visible', async ({
-  page,
-}) => {
+test('Caring for Carers section is visible', async ({ page }) => {
   await page.goto(baseURL);
   await acceptCookiesIfVisible(page);
 
   await expect(
-    page.getByRole('heading', {
-      name: 'Caring for Carers',
-    })
+    page.getByRole('heading', { name: 'Caring for Carers' })
   ).toBeVisible();
 });
 
@@ -130,9 +111,7 @@ test('Our Solution section is visible', async ({ page }) => {
   await acceptCookiesIfVisible(page);
 
   await expect(
-    page.getByRole('heading', {
-      name: 'Our Solution',
-    })
+    page.getByRole('heading', { name: 'Our Solution' })
   ).toBeVisible();
 });
 
@@ -143,13 +122,8 @@ test('FIND OUT MORE expands content', async ({ page }) => {
   await page.goto(baseURL);
   await acceptCookiesIfVisible(page);
 
-  const button = page.getByRole('button', {
-    name: 'FIND OUT MORE',
-  });
-
-  const expandedContent = page.locator(
-    ':visible'
-  );
+  const button = page.getByRole('button', { name: 'FIND OUT MORE' });
+  const expandedContent = page.locator('text=/./');
 
   await expect(button).toBeVisible();
 
