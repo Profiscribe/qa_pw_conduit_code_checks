@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "playwright test",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "type": "commonjs",
   "devDependencies": {
@@ -23,7 +23,7 @@
       "prettier --write",
       "eslint --fix"
     ],
-    "*.{md}": [
+    "*.md": [
       "prettier --write"
     ]
   }
