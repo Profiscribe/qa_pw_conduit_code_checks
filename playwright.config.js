@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { defineConfig, devices } from '@playwright/test';
 
 /**
@@ -65,4 +66,17 @@ export default defineConfig({
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+=======
+// playwright.config.js
+const { defineConfig } = require('@playwright/test');
+
+module.exports = defineConfig({
+  testDir: './tests', // де лежать тести
+  timeout: 30 * 1000, // макс. час на тест
+  use: {
+    headless: false, // запускаємо браузер видимим
+    viewport: { width: 1280, height: 720 },
+    ignoreHTTPSErrors: true,
+  },
+>>>>>>> task_solution
 });

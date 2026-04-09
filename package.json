@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "qa_pw_intro",
   "version": "1.0.0",
   "description": "",
@@ -15,3 +16,34 @@
   "author": "",
   "license": "ISC"
 }
+=======
+  "name": "webportal-tests",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "playwright test",
+    "prepare": "husky"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.59.1",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.10.1",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{md}": [
+      "prettier --write"
+    ]
+  }
+}
+>>>>>>> task_solution
