@@ -1,15 +1,5 @@
-<<<<<<< HEAD
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-./vscode
-=======
-node_modules
-npm-debug.log
-.env
-playwright-report
-test-results
-package-lock.json
->>>>>>> task_solution
+test-results/
+playwright-report/
+playwright/.cache/
+.vscode
